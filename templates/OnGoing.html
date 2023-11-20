@@ -74,80 +74,83 @@
     </div>
 
     <script>
-        // Function to make AJAX requests to your Django API and update the UI
-        function fetchDataAndUpdateUI(url, graphId, labelId) {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    updateGraph(graphId, data);
-                    updateLabel(labelId, data);
-                })
-                .catch(error => console.error('Error:', error));
+        // Function to generate random heart rate data
+        function generateHeartRateData() {
+            return Math.floor(Math.random() * (120 - 60 + 1)) + 60; // Random heart rate between 60 and 120 BPM
         }
-    
-        // Function to update the graph with the received data
-        function updateGraph(graphId, data) {
-            const ctx = document.getElementById(graphId).getContext('2d');
-    
-            // Assuming data is an array of values, adjust the labels accordingly
-            const labels = Array.from({ length: data.length }, (_, i) => i + 1);
-    
-            // Chart.js configuration
-            const config = {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'ECG Data',
-                        data: data,
-                        borderColor: 'rgba(255, 255, 255, 1)',
-                        borderWidth: 1,
-                        fill: false
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: [{
-                            type: 'linear',
-                            position: 'bottom'
-                        }],
-                        y: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            };
-    
-            // If the chart already exists, update it; otherwise, create a new one
-            if (window.myLine) {
-                window.myLine.data.labels = config.data.labels;
-                window.myLine.data.datasets[0].data = config.data.datasets[0].data;
-                window.myLine.update();
-            } else {
-                window.myLine = new Chart(ctx, config);
+
+        // Function to generate random core temperature data
+        function generateCoreTempData() {
+            return (Math.random() * (39.5 - 36.5)) + 36.5; // Random core temperature between 36.5°C and 39.5°C
+        }
+
+        // Function to generate random respiratory rate data
+        function generateRespiratoryRateData() {
+            return Math.floor(Math.random() * (30 - 10 + 1)) + 10; // Random respiratory rate between 10 and 30 BPM
+        }
+
+        // Function to update heart rate and draw the ECG graph
+        function updateHeartRateAndECG() {
+            const heartRate = generateHeartRateData();
+            document.getElementById("heart-rate").textContent = `${heartRate} BPM`;
+            
+            const ecgData = generateECGData();
+            drawECG("ecg-heart-rate", ecgData);
+        }
+
+        // Function to update core temperature and draw the ECG graph
+        function updateCoreTempAndECG() {
+            const coreTemp = generateCoreTempData();
+            document.getElementById("core-temp").textContent = `${coreTemp.toFixed(1)}°C`;
+            
+            const ecgData = generateECGData();
+            drawECG("ecg-core-temp", ecgData);
+        }
+
+        // Function to update respiratory rate and draw the ECG graph
+        function updateRespiratoryRateAndECG() {
+            const respiratoryRate = generateRespiratoryRateData();
+            document.getElementById("respiratory-rate").textContent = `${respiratoryRate} BPM`;
+            
+            const ecgData = generateECGData();
+            drawECG("ecg-respiratory-rate", ecgData);
+        }
+
+        // Function to draw the ECG graph for a specific canvas
+        function drawECG(canvasId, data) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext("2d");
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height / 2);
+
+            for (let i = 0; i < data.length; i++) {
+                const x = (i / data.length) * canvas.width;
+                const y = (1 - (data[i] / 100)) * canvas.height;
+
+                ctx.lineTo(x, y);
             }
+
+            ctx.strokeStyle = "#007BFF";
+            ctx.lineWidth = 2;
+            ctx.stroke();
         }
-    
-        // Function to update the label with the received data
-        function updateLabel(labelId, data) {
-            document.getElementById(labelId).textContent = `${data[data.length - 1]} BPM`; // Update label text with the last data point
+
+        // Example data (you can replace this with real data)
+        function generateECGData() {
+            const ecgData = [];
+            for (let i = 0; i <= 11; i++) {
+                const value = Math.floor(Math.random() * 100); // Random ECG value between 0 and 100
+                ecgData.push(value);
+            }
+            return ecgData;
         }
-    
-        // Start fetching and updating data every second
-        setInterval(() => {
-            fetchDataAndUpdateUI('/api/heart-rate/', 'ecg-heart-rate', 'heart-rate');
-        }, 1000);
-    
-        // Similar intervals for core temperature and respiratory rate
-        setInterval(() => {
-            fetchDataAndUpdateUI('/api/core-temp/', 'ecg-core-temp', 'core-temp');
-        }, 1000);
-    
-        setInterval(() => {
-            fetchDataAndUpdateUI('/api/respiratory-rate/', 'ecg-respiratory-rate', 'respiratory-rate');
-        }, 1000);
+
+        // Start simulating and updating every second
+        setInterval(updateHeartRateAndECG, 1000);
+        setInterval(updateCoreTempAndECG, 1000);
+        setInterval(updateRespiratoryRateAndECG, 1000);
     </script>
 </body>
 </html>
