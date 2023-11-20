@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <title>Collaborations</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="greet">
+            <h2>Good Morning!</h2>
+        </div>
+        <div class="doctor">
+            <h1>Doc. Ryan!</h1>
+        </div>
+        <br />
+        <ul>
+            <a href="{% url 'dashboard' %}"><li><img src="{% static 'Photos/dashboard.png'%}" alt="Dashboard" />Dashboard</li></a>
+            <a href="{% url 'allpatients' %}"><li><img src="{% static 'Photos/patients.png'%}" alt="Patients" />Patients</li></a>
+            <a href="{% url 'collaborators' %}"><li><img src="{% static 'Photos/collab.png'%}" alt="Collaborators" />Collaborator</li></a>
+            <a href="{% url 'ongoing' %}"><li><img src="{% static 'Photos/stat.png'%}" alt="On Going Patient" />On Going Patient</li></a>
+        </ul>
+    </div>
+
+    <div class="con">
+        <div class="header">
+            <div class="head">
+                <h2>Dapper Animal Patient Monitoring System</h2>
+            </div>
+            <div class="settings">
+                <button onclick="admin ()"><img src="Photos/Settings.png" alt="Settings Icon" /></button>
+                <script>
+                    function admin() {
+                        window.location.href = "{% url 'settings' %}";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="collab">
+        <div class="container">
+            <div class="content">
+                <div class="cards">
+                    <div class="card">
+                        <div class="box">
+                            <div class="Collaborators">
+                                <br />
+                                <h3>Past Collaborations</h3>
+                                <div class="search">
+
+                                </div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Age</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>30</td>
+                                            <td>2023-08-15</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jane Smith</td>
+                                            <td>25</td>
+                                            <td>2023-07-20</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

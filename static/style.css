@@ -1,0 +1,458 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* EDITED CODE STARTS HERE */
+/* previously Login */
+
+.contain{
+    position: absolute;
+    right: 0;
+    width: 100vw;
+    height: 100vh;;
+	background: #aabeb3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contain .pop{
+    width: 85vw;
+    height: 70vh;
+    background: rgb(253, 253, 253);
+    display: grid;
+    grid-template-columns: repeat(2, 50vw);
+    justify-content: center;
+}
+
+.contain .pop .img {
+    margin-left: 10vh;
+    display: flex;
+    justify-content: flex-end;
+    justify-content: flex-start;
+}
+
+
+.contain .pop .img img{
+    width: 370px;
+}
+
+.login-container{
+    display: flex;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.login-container .form-group{
+    text-align: left;
+}
+/* previously Login */
+/* EDITED CODE ENDS HERE */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/*  previously sidebar  */
+body {
+	min-height: 100vh;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+h1, h2 {
+	color: #444;
+
+}
+
+h3{
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.sidebar {
+	position: fixed;
+	background: #aabeb3;
+	width: 25vw;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar .greet {
+	height: 8vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sidebar .doctor {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sidebar li {
+	height: 10vh;
+	font-size: 24px;
+	padding: 10px 20px;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+.sidebar li:hover {
+	background: white;
+	color: #bac9b4;
+}
+
+.con {
+    position: fixed;
+    right: 0;
+    width: 75vw;
+    height: 10vh;
+    background: #f1f1f1;
+}
+
+.con .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.con .header .head {
+    position: fixed;
+    align-items: center
+}
+
+.con .header .settings {
+    margin-left: 70vw;
+}
+
+.con .header .settings img {
+    width: 25px;
+    height: 25px;
+}
+/* previously sidebar */
+/*  EDITED CODE ENDS HERE  */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/* 	 previously Dashboard   */
+.dash .container {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 75vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+
+.dash .container .content{
+    position: relative;
+    margin-top: 10vh;
+    min-height: 90vh;
+}
+
+.dash .container .content .cards{
+    padding: 20px 15px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dash .container .content .cards .card{
+    width: 300px;
+    height: 200px;
+    background: white;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* 	 previously Dashboard   */
+/*  EDITED CODE ENDS HERE  */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/* previously AllPatients */
+.all .container {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 75vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+
+.all .container .content{
+    position: relative;
+    margin-top: 2px;
+    min-height: 90vh;
+}
+
+.all .container .content .cards{
+    position: fixed;
+    padding: 20px 15px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.all .container .content .cards .card{
+    width: 75vw;
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table {
+    width: 70vw;
+    border-collapse: collapse;
+    margin-top: 20px;
+    padding-left: 2em;
+}
+
+th {
+    text-align: center;
+    border-block-end: 1px solid #444;
+}
+
+td {
+    border-block-end: 1px solid #444;
+    padding: 8px;
+    margin-left: 15px;
+    text-align: center;
+}
+/* previously AllPatients */
+/*  EDITED CODE ENDS HERE  */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/*  previously Collaborators */
+.collab .container {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 75vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+
+.collab .container .content{
+    position: relative;
+    margin-top: 2px;
+    min-height: 90vh;
+}
+
+.collab .container .content .cards{
+    position: fixed;
+    padding: 20px 15px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.collab .container .content .cards .card{
+    width: 75vw;
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* previously Collaborators */
+/*  EDITED CODE ENDS HERE  */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/* previously Settings */
+
+.set .container {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 75vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+
+.set .container .content{
+    position: relative;
+    margin-top: 2px;
+    min-height: 90vh;
+}
+
+.user-form h2,
+.user-list h2 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.user-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+label,
+select,
+input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#expirationDateDiv {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.user-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-list ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+    
+/* previously Settings */
+/* EDITED CODE ENDS HERE */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/* previously OnGoing */
+.nav{
+    position: fixed;
+    right: 0;
+    width: 100vw;
+    height: 10vh;
+    background: #f1f1f1;
+}
+
+.nav .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav .header .head {
+    position: fixed;
+    align-items: center;
+}
+
+.nav .header .back {
+    margin-right: 85vw;
+}
+
+.bg{
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 100vw;
+    height: 100vh;;
+	background: #aabeb3;
+    display: flex;
+    justify-content: center;
+}
+
+.monitor{
+    margin-top: 20px;
+    width: 95vw;
+    height: 80vh;
+    background: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: repeat(2, 75vw);
+}
+
+.lbl {
+    text-align: right;
+    width: 20vw;
+}
+
+.vital{
+    margin: 20px;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+}
+
+.graph {
+    padding-top: 4vw;
+}
+
+/* previously Ongoing */
+/* EDITED CODE ENDS HERE */
+
+                /* ------------------------------------------------------------------- */
+
+/* EDITED CODE STARTS HERE */
+/* previously print */
+
+/* previously print */
+/* EDITED CODE ENDS HERE */
+
+                /* ------------------------------------------------------------------- */
+

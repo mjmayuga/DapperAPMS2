@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <title>On Going</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="nav">
+        <div class="header">
+            <div class="head">
+                <h2>Dapper Animal Patient Monitoring System</h2>
+            </div>
+
+            <div class="back">
+                <button onclick="back()"><h3>Back</h3></button>
+                <script>
+                    function back() {
+                        window.location.href = "{% url 'dashboard' %}";
+                    }
+                </script>
+            </div>
+
+            <button onclick="window.print()"><h3>Print</h3></button>
+        </div>
+    </div>
+
+    <div class="bg">
+        <div class="monitor">
+            <div class="line">
+                <div class="graph">
+                    <canvas id="ecg-heart-rate" width="950" height="150"></canvas>
+                </div>
+    
+                <!-- Second ECG graph for Core Temperature -->
+                <div class="graph">
+                    <canvas id="ecg-core-temp" width="950" height="150"></canvas>
+                </div>
+    
+                <!-- Third ECG graph for Respiratory Rate -->
+                <div class="graph">
+                    <canvas id="ecg-respiratory-rate" width="950" height="150"></canvas>
+                </div>
+            </div>
+
+            <div class="lbl">
+                <div class="vital">
+                    <h3>Heart Rate</h3>
+                    <br />
+                    <br />
+                    <p id="heart-rate">80 BPM</p>
+                </div>
+    
+                <div class="vital">
+                    <h3>Respiratory Rate</h3>
+                    <br />
+                    <br />
+                    <p id="respiratory-rate">20 BPM</p>
+                </div>
+    
+                <div class="vital">
+                    <h3>Core Temperature</h3>
+                    <br />
+                    <br />
+                    <p id="core-temp">38°C</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to make AJAX requests to your Django API and update the UI
+        function fetchDataAndUpdateUI(url, graphId, labelId) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    updateGraph(graphId, data);
+                    updateLabel(labelId, data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    
+        // Function to update the graph with the received data
+        function updateGraph(graphId, data) {
+            const ctx = document.getElementById(graphId).getContext('2d');
+    
+            // Assuming data is an array of values, adjust the labels accordingly
+            const labels = Array.from({ length: data.length }, (_, i) => i + 1);
+    
+            // Chart.js configuration
+            const config = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ECG Data',
+                        data: data,
+                        borderColor: 'rgba(255, 255, 255, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: [{
+                            type: 'linear',
+                            position: 'bottom'
+                        }],
+                        y: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            };
+    
+            // If the chart already exists, update it; otherwise, create a new one
+            if (window.myLine) {
+                window.myLine.data.labels = config.data.labels;
+                window.myLine.data.datasets[0].data = config.data.datasets[0].data;
+                window.myLine.update();
+            } else {
+                window.myLine = new Chart(ctx, config);
+            }
+        }
+    
+        // Function to update the label with the received data
+        function updateLabel(labelId, data) {
+            document.getElementById(labelId).textContent = `${data[data.length - 1]} BPM`; // Update label text with the last data point
+        }
+    
+        // Start fetching and updating data every second
+        setInterval(() => {
+            fetchDataAndUpdateUI('/api/heart-rate/', 'ecg-heart-rate', 'heart-rate');
+        }, 1000);
+    
+        // Similar intervals for core temperature and respiratory rate
+        setInterval(() => {
+            fetchDataAndUpdateUI('/api/core-temp/', 'ecg-core-temp', 'core-temp');
+        }, 1000);
+    
+        setInterval(() => {
+            fetchDataAndUpdateUI('/api/respiratory-rate/', 'ecg-respiratory-rate', 'respiratory-rate');
+        }, 1000);
+    </script>
+</body>
+</html>

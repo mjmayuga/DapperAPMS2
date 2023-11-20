@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <title>Log In</title>
+</head>
+
+<body>
+
+    <div class="contain">
+        <div class="pop">
+            <div class="img">
+                <img src="{% static 'Photos/Dog.png'%}">
+            </div>
+        
+            <div class="login-container">
+                <form class="login-form" action="{% url 'dashboard' %}" method="post" onsubmit="return validateForm()">
+                    <small>Welcome!</small>
+                    <br />
+                    <h2>Dapper Animal Patient Monitoring System</h2>
+                    <br />
+                    <br />
+                    <br />
+                    <h2>Login</h2>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <br />
+                    <br />
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === "" || password === "") {
+                alert("Both username and password are required.");
+                return false;
+            }
+
+            // You can add more advanced validation here if needed.
+
+            return true;
+        }
+    </script>
+
+
+</body>
+</html>

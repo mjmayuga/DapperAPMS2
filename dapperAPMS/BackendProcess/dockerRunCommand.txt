@@ -1,0 +1,23 @@
+docker run -d \
+  --name=wireguard2 \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE `#optional` \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e SERVERPORT=51820 `#optional` \
+  -e PEERS=1 `#optional` \
+  -e PEERDNS=auto `#optional` \
+  -e INTERNAL_SUBNET=10.13.13.0 `#optional` \
+  -e ALLOWEDIPS=0.0.0.0/0 `#optional` \
+  -p 51820:51820/udp \
+  -v /opt/wireguard/config:/config \
+  -v /lib/modules:/lib/modules `#optional` \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  --network UiInterfaceNetwork \
+  --ip=192.168.0.7 \
+  --restart always \
+  lscr.io/linuxserver/wireguard:latest
+
+
+  curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb && dpkg -i cloudflared.deb && cloudflared service install eyJhIjoiN2I0ZDY5NzVmMTllMTEzMjVhZDMxZDg4OTQ2MjE2NDciLCJ0IjoiMGNjNjA5N2QtNTE0Ny00OTI5LWFhZDgtMmNmODEzMDZhZmViIiwicyI6Ik4yUmxOR1kxTXpZdE1UWTRNaTAwTVdSakxUbGtOREF0WldOaU1ESTFOMlk1TmpRMSJ9

@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <title>User Settings</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="greet">
+            <h2>Admin Panel</h2>
+        </div>
+        <br />
+        <ul>
+            <li><img src="{% static 'Photos/collab.png'%}" alt="Add Users" />User Setting</li>
+            <a href="{% url 'settingalarm' %}"><li><img src="{% static 'Photos/stat.png'%}" alt="Alarm Setting" />Alarm Setting</li></a>
+        </ul>
+    </div>
+
+    <div class="con">
+        <div class="header">
+            <div class="head">
+                <h2>Dapper Animal Patient Monitoring System</h2>
+            </div>
+            <div class="settings">
+                <button onclick="admin ()"><img src="{% static 'Photos/Settings.png'%}" alt="Settings Icon" /></button>
+                <script>
+                    function admin() {
+                        window.location.href = "{% url 'settings' %}";
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="set">
+        <div class="container">
+            <div class="content">
+                <div class="user-form">
+                    <h2>Add User</h2>
+                    <form id="userForm">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+
+                        <label for="userType">User Type:</label>
+                        <select id="userType">
+                            <option value="regular">Regular User</option>
+                            <option value="temporary">Temporary User</option>
+                        </select>
+
+                        <div id="expirationDateDiv">
+                            <label for="expirationDate">Expiration Date:</label>
+                            <input type="date" id="expirationDate">
+                        </div>
+
+                        <button type="submit">Add User</button>
+                    </form>
+                </div>
+
+                <div class="user-list">
+                    <h2>User List</h2>
+                    <ul id="userList">
+                        <!-- Users will be displayed here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         const userForm = document.getElementById("userForm");
+         const usernameInput = document.getElementById("username");
+         const passwordInput = document.getElementById("password");
+         const userTypeSelect = document.getElementById("userType");
+         const expirationDateDiv = document.getElementById("expirationDateDiv");
+         const expirationDateInput = document.getElementById("expirationDate");
+         const userList = document.getElementById("userList");
+
+            userForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                const userType = userTypeSelect.value;
+                const expirationDate = expirationDateInput.value;
+
+                const listItem = document.createElement("li");
+                listItem.textContent = `Username: ${username}, Password: ${password}, User Type: ${userType}${userType === "temporary" ? `, Expiration Date: ${expirationDate}` : ""}`;
+                userList.appendChild(listItem);
+
+                usernameInput.value = "";
+                passwordInput.value = "";
+                userTypeSelect.value = "regular";
+                expirationDateDiv.style.display = "none";
+                expirationDateInput.value = "";
+            });
+
+        userTypeSelect.addEventListener("change", function () {
+            if (userTypeSelect.value === "temporary") {
+                expirationDateDiv.style.display = "block";
+            } else {
+                expirationDateDiv.style.display = "none";
+                expirationDateInput.value = "";
+            }
+        });
+    </script>
+
+</body>
+</html>
