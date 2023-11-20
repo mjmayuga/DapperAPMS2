@@ -74,34 +74,20 @@
     </div>
 
     <script>
-        // Function to generate random heart rate data
-        function generateHeartRateData() {
-            return Math.floor(Math.random() * (120 - 60 + 1)) + 60; // Random heart rate between 60 and 120 BPM
-        }
-
-        // Function to generate random core temperature data
-        function generateCoreTempData() {
-            return (Math.random() * (39.5 - 36.5)) + 36.5; // Random core temperature between 36.5°C and 39.5°C
-        }
-
-        // Function to generate random respiratory rate data
-        function generateRespiratoryRateData() {
-            return Math.floor(Math.random() * (30 - 10 + 1)) + 10; // Random respiratory rate between 10 and 30 BPM
-        }
 
         // Function to update heart rate and draw the ECG graph
         function updateHeartRateAndECG() {
-            const heartRate = generateHeartRateData();
-            document.getElementById("heart-rate").textContent = `${heartRate} BPM`;
+            const heartRate = ecgs;
+            document.getElementById("ecgs").textContent = ${heartRate} BPM;
             
-            const ecgData = generateECGData();
+            const ecgData =generateECGData();
             drawECG("ecg-heart-rate", ecgData);
         }
 
         // Function to update core temperature and draw the ECG graph
         function updateCoreTempAndECG() {
-            const coreTemp = generateCoreTempData();
-            document.getElementById("core-temp").textContent = `${coreTemp.toFixed(1)}°C`;
+            const coreTemp = temperatures();
+            document.getElementById("temperatures").textContent = ${coreTemp.toFixed(1)}°C;
             
             const ecgData = generateECGData();
             drawECG("ecg-core-temp", ecgData);
@@ -109,8 +95,8 @@
 
         // Function to update respiratory rate and draw the ECG graph
         function updateRespiratoryRateAndECG() {
-            const respiratoryRate = generateRespiratoryRateData();
-            document.getElementById("respiratory-rate").textContent = `${respiratoryRate} BPM`;
+            const respiratoryRate = respiratories;
+            document.getElementById("respiratories").textContent = ${respiratoryRate} BPM;
             
             const ecgData = generateECGData();
             drawECG("ecg-respiratory-rate", ecgData);
@@ -141,16 +127,16 @@
         function generateECGData() {
             const ecgData = [];
             for (let i = 0; i <= 11; i++) {
-                const value = Math.floor(Math.random() * 100); // Random ECG value between 0 and 100
+                const value = context
                 ecgData.push(value);
             }
             return ecgData;
         }
 
         // Start simulating and updating every second
-        setInterval(updateHeartRateAndECG, 1000);
-        setInterval(updateCoreTempAndECG, 1000);
-        setInterval(updateRespiratoryRateAndECG, 1000);
+        setInterval(updateHeartRateAndECG, 200);
+        setInterval(updateCoreTempAndECG, 200);
+        setInterval(updateRespiratoryRateAndECG, 200);
     </script>
 </body>
 </html>
